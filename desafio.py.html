@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/strict.dtd">
+<html>
+<head>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<title>Exported from Notepad++</title>
+<style type="text/css">
+span {
+	font-family: 'Courier New';
+	font-size: 10pt;
+	color: #000000;
+}
+.sc0 {
+}
+.sc1 {
+	color: #008000;
+}
+.sc2 {
+	color: #FF0000;
+}
+.sc3 {
+	color: #808080;
+}
+.sc4 {
+	color: #808080;
+}
+.sc5 {
+	font-weight: bold;
+	color: #0000FF;
+}
+.sc9 {
+	color: #FF00FF;
+}
+.sc10 {
+	font-weight: bold;
+	color: #000080;
+}
+.sc11 {
+}
+</style>
+</head>
+<body>
+<div style="float: left; white-space: pre; line-height: 1; background: #FFFFFF; "><span class="sc5">import</span><span class="sc0"> </span><span class="sc11">numpy</span><span class="sc0"> </span><span class="sc5">as</span><span class="sc0"> </span><span class="sc11">np</span><span class="sc0">
+</span><span class="sc5">import</span><span class="sc0"> </span><span class="sc11">cv2</span><span class="sc0">
+</span><span class="sc5">from</span><span class="sc0"> </span><span class="sc11">matplotlib</span><span class="sc0"> </span><span class="sc5">import</span><span class="sc0"> </span><span class="sc11">pyplot</span><span class="sc0"> </span><span class="sc5">as</span><span class="sc0"> </span><span class="sc11">plt</span><span class="sc0">
+</span><span class="sc5">import</span><span class="sc0"> </span><span class="sc11">os</span><span class="sc0">
+
+</span><span class="sc1">#import functools</span><span class="sc0">
+</span><span class="sc11">data</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc10">(</span><span class="sc2">1</span><span class="sc10">,</span><span class="sc2">2</span><span class="sc10">)</span><span class="sc0">
+</span><span class="sc11">resultado</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">np</span><span class="sc10">.</span><span class="sc11">float32</span><span class="sc10">([[</span><span class="sc2">1</span><span class="sc10">,</span><span class="sc2">1</span><span class="sc10">]])</span><span class="sc0">
+</span><span class="sc11">clear</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc5">lambda</span><span class="sc10">:</span><span class="sc0"> </span><span class="sc11">os</span><span class="sc10">.</span><span class="sc11">system</span><span class="sc10">(</span><span class="sc4">'cls'</span><span class="sc10">)</span><span class="sc0">
+
+</span><span class="sc5">def</span><span class="sc0"> </span><span class="sc9">transforma</span><span class="sc10">(</span><span class="sc11">pt</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc11">dst1</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc11">dst2</span><span class="sc10">):</span><span class="sc0"> </span><span class="sc1">#aplica perspectiva e printa pontos</span><span class="sc0">
+    </span><span class="sc11">a</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">np</span><span class="sc10">.</span><span class="sc11">array</span><span class="sc10">(</span><span class="sc11">pt</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc11">dtype</span><span class="sc10">=</span><span class="sc4">'float32'</span><span class="sc10">)</span><span class="sc0">
+    </span><span class="sc11">h</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">np</span><span class="sc10">.</span><span class="sc11">array</span><span class="sc10">(</span><span class="sc11">dst1</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc11">dtype</span><span class="sc10">=</span><span class="sc4">'float32'</span><span class="sc10">)</span><span class="sc0">
+    </span><span class="sc11">a</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">np</span><span class="sc10">.</span><span class="sc11">array</span><span class="sc10">([</span><span class="sc11">a</span><span class="sc10">])</span><span class="sc0">
+    </span><span class="sc11">pointsOut</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">cv2</span><span class="sc10">.</span><span class="sc11">perspectiveTransform</span><span class="sc10">(</span><span class="sc11">a</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc11">h</span><span class="sc10">)</span><span class="sc0">
+
+    </span><span class="sc11">a</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">pointsOut</span><span class="sc0">
+    </span><span class="sc11">h</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">np</span><span class="sc10">.</span><span class="sc11">array</span><span class="sc10">(</span><span class="sc11">dst2</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc11">dtype</span><span class="sc10">=</span><span class="sc4">'float32'</span><span class="sc10">)</span><span class="sc0">
+    </span><span class="sc1">#a = np.array([a])  </span><span class="sc0">
+    </span><span class="sc11">coordsOut</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">cv2</span><span class="sc10">.</span><span class="sc11">perspectiveTransform</span><span class="sc10">(</span><span class="sc11">a</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc11">h</span><span class="sc10">)</span><span class="sc0">  
+    </span><span class="sc11">clear</span><span class="sc10">()</span><span class="sc0">
+    </span><span class="sc5">print</span><span class="sc10">(</span><span class="sc3">" "</span><span class="sc10">)</span><span class="sc0">
+    </span><span class="sc5">print</span><span class="sc10">(</span><span class="sc3">" "</span><span class="sc10">)</span><span class="sc0">
+    </span><span class="sc5">print</span><span class="sc10">(</span><span class="sc3">".-.-.-.-.-.-.-.-.-.-.-.-.-.-."</span><span class="sc10">)</span><span class="sc0">
+    </span><span class="sc5">print</span><span class="sc10">(</span><span class="sc3">"CLICK nos pixels na imagem FOTO:"</span><span class="sc10">)</span><span class="sc0">
+    </span><span class="sc5">print</span><span class="sc10">(</span><span class="sc11">pt</span><span class="sc10">)</span><span class="sc0">   
+    </span><span class="sc5">print</span><span class="sc10">(</span><span class="sc3">"."</span><span class="sc10">)</span><span class="sc0">
+    </span><span class="sc5">print</span><span class="sc10">(</span><span class="sc3">"Pixel correspondente na imagem MAPA:"</span><span class="sc10">)</span><span class="sc0">
+    </span><span class="sc5">print</span><span class="sc10">(</span><span class="sc11">pointsOut</span><span class="sc10">)</span><span class="sc0">
+    </span><span class="sc5">print</span><span class="sc10">(</span><span class="sc3">" "</span><span class="sc10">)</span><span class="sc0">
+    </span><span class="sc5">print</span><span class="sc10">(</span><span class="sc3">" "</span><span class="sc10">)</span><span class="sc0">
+    </span><span class="sc5">print</span><span class="sc10">(</span><span class="sc3">" "</span><span class="sc10">)</span><span class="sc0">
+    </span><span class="sc5">print</span><span class="sc10">(</span><span class="sc3">" "</span><span class="sc10">)</span><span class="sc0">
+    </span><span class="sc1">#print(a)</span><span class="sc0">
+    </span><span class="sc5">print</span><span class="sc10">(</span><span class="sc3">" "</span><span class="sc10">)</span><span class="sc0">
+    </span><span class="sc5">print</span><span class="sc10">(</span><span class="sc3">"Coordenada correspondente ao pixel:"</span><span class="sc10">)</span><span class="sc0">
+    </span><span class="sc5">print</span><span class="sc10">(</span><span class="sc11">coordsOut</span><span class="sc10">)</span><span class="sc0">
+    </span><span class="sc5">print</span><span class="sc10">(</span><span class="sc3">".-.-.-.-.-.-.-.-.-.-.-.-.-.-."</span><span class="sc10">)</span><span class="sc0">
+    </span><span class="sc5">print</span><span class="sc10">(</span><span class="sc3">" "</span><span class="sc10">)</span><span class="sc0">
+    
+    
+</span><span class="sc5">def</span><span class="sc0"> </span><span class="sc9">InitPerspectiva</span><span class="sc10">():</span><span class="sc0">
+    </span><span class="sc11">ptsFoto</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">np</span><span class="sc10">.</span><span class="sc11">float32</span><span class="sc10">([[</span><span class="sc2">552</span><span class="sc10">,</span><span class="sc2">478</span><span class="sc10">],[</span><span class="sc2">220</span><span class="sc10">,</span><span class="sc2">148</span><span class="sc10">],[</span><span class="sc2">660</span><span class="sc10">,</span><span class="sc2">103</span><span class="sc10">],[</span><span class="sc2">412</span><span class="sc10">,</span><span class="sc2">118</span><span class="sc10">]])</span><span class="sc0">
+    </span><span class="sc11">ptsMapa</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">np</span><span class="sc10">.</span><span class="sc11">float32</span><span class="sc10">([[</span><span class="sc2">657</span><span class="sc10">,</span><span class="sc2">760</span><span class="sc10">],[</span><span class="sc2">418</span><span class="sc10">,</span><span class="sc2">496</span><span class="sc10">],[</span><span class="sc2">493</span><span class="sc10">,</span><span class="sc2">55</span><span class="sc10">],[</span><span class="sc2">368</span><span class="sc10">,</span><span class="sc2">241</span><span class="sc10">]])</span><span class="sc0">
+    </span><span class="sc5">return</span><span class="sc0"> </span><span class="sc11">ptsFoto</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc11">ptsMapa</span><span class="sc0">
+    
+</span><span class="sc5">def</span><span class="sc0"> </span><span class="sc9">InitHomografia</span><span class="sc10">():</span><span class="sc0">
+    </span><span class="sc11">ptsFoto</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">np</span><span class="sc10">.</span><span class="sc11">float32</span><span class="sc10">([[</span><span class="sc2">552</span><span class="sc10">,</span><span class="sc2">478</span><span class="sc10">],[</span><span class="sc2">220</span><span class="sc10">,</span><span class="sc2">148</span><span class="sc10">],[</span><span class="sc2">660</span><span class="sc10">,</span><span class="sc2">103</span><span class="sc10">],[</span><span class="sc2">412</span><span class="sc10">,</span><span class="sc2">118</span><span class="sc10">]])</span><span class="sc0">
+    </span><span class="sc11">ptsMapa</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">np</span><span class="sc10">.</span><span class="sc11">float32</span><span class="sc10">([[</span><span class="sc2">657</span><span class="sc10">,</span><span class="sc2">760</span><span class="sc10">],[</span><span class="sc2">418</span><span class="sc10">,</span><span class="sc2">496</span><span class="sc10">],[</span><span class="sc2">493</span><span class="sc10">,</span><span class="sc2">55</span><span class="sc10">],[</span><span class="sc2">368</span><span class="sc10">,</span><span class="sc2">241</span><span class="sc10">]])</span><span class="sc0">
+    </span><span class="sc5">return</span><span class="sc0"> </span><span class="sc11">ptsFoto</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc11">ptsMapa</span><span class="sc0">
+    
+</span><span class="sc5">def</span><span class="sc0"> </span><span class="sc9">coordConversao</span><span class="sc10">():</span><span class="sc0">
+    </span><span class="sc11">pixMapa</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">np</span><span class="sc10">.</span><span class="sc11">float32</span><span class="sc10">([[</span><span class="sc2">657</span><span class="sc10">,</span><span class="sc2">760</span><span class="sc10">],[</span><span class="sc2">418</span><span class="sc10">,</span><span class="sc2">496</span><span class="sc10">],[</span><span class="sc2">493</span><span class="sc10">,</span><span class="sc2">55</span><span class="sc10">],[</span><span class="sc2">368</span><span class="sc10">,</span><span class="sc2">241</span><span class="sc10">]])</span><span class="sc0">
+    </span><span class="sc1">#pixMapa = np.float32([[760,657],[496,418],[55,493],[241,368]])</span><span class="sc0">
+    </span><span class="sc11">coords</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">np</span><span class="sc10">.</span><span class="sc11">float32</span><span class="sc10">([[-</span><span class="sc2">43.975112</span><span class="sc10">,-</span><span class="sc2">19.884362</span><span class="sc10">],[-</span><span class="sc2">43.978154</span><span class="sc10">,-</span><span class="sc2">19.880996</span><span class="sc10">],[-</span><span class="sc2">43.978796</span><span class="sc10">,-</span><span class="sc2">19.75391</span><span class="sc10">],[-</span><span class="sc2">43.978796</span><span class="sc10">,-</span><span class="sc2">19.877751</span><span class="sc10">]])</span><span class="sc0">
+    </span><span class="sc1">#coords = np.float32([[-19.885087,-43.974836],[-19.884362,-43.975112],[-19.880996,-43.978154],[-19.875391,-43.978796]]) </span><span class="sc0">
+    </span><span class="sc5">return</span><span class="sc0"> </span><span class="sc11">pixMapa</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc11">coords</span><span class="sc0">
+
+</span><span class="sc11">foto</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">cv2</span><span class="sc10">.</span><span class="sc11">cv2</span><span class="sc10">.</span><span class="sc11">imread</span><span class="sc10">(</span><span class="sc4">'cameraview.png'</span><span class="sc10">)</span><span class="sc0">
+</span><span class="sc11">pts</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">cv2</span><span class="sc10">.</span><span class="sc11">cv2</span><span class="sc10">.</span><span class="sc11">imread</span><span class="sc10">(</span><span class="sc4">'points.png'</span><span class="sc10">)</span><span class="sc0">
+</span><span class="sc11">img</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">cv2</span><span class="sc10">.</span><span class="sc11">cv2</span><span class="sc10">.</span><span class="sc11">imread</span><span class="sc10">(</span><span class="sc4">'cmap.png'</span><span class="sc10">)</span><span class="sc0">
+</span><span class="sc11">rows</span><span class="sc10">,</span><span class="sc11">cols</span><span class="sc10">,</span><span class="sc11">ch</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">img</span><span class="sc10">.</span><span class="sc11">shape</span><span class="sc0">
+
+
+
+
+</span><span class="sc11">ptsFoto</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc11">ptsMapa</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">InitPerspectiva</span><span class="sc10">()</span><span class="sc0">
+</span><span class="sc11">pixMapa</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc11">latLong</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">coordConversao</span><span class="sc10">()</span><span class="sc0">
+
+</span><span class="sc11">matPerspectiva</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">cv2</span><span class="sc10">.</span><span class="sc11">getPerspectiveTransform</span><span class="sc10">(</span><span class="sc11">ptsFoto</span><span class="sc10">,</span><span class="sc11">ptsMapa</span><span class="sc10">,</span><span class="sc11">cv2</span><span class="sc10">.</span><span class="sc11">DECOMP_LU</span><span class="sc10">)</span><span class="sc0"> </span><span class="sc1">#CALCULA MATRIZ DE TRANSFORM</span><span class="sc0">
+</span><span class="sc11">matCoordenadas</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">cv2</span><span class="sc10">.</span><span class="sc11">getPerspectiveTransform</span><span class="sc10">(</span><span class="sc11">pixMapa</span><span class="sc10">,</span><span class="sc11">latLong</span><span class="sc10">,</span><span class="sc11">cv2</span><span class="sc10">.</span><span class="sc11">DECOMP_LU</span><span class="sc10">)</span><span class="sc0"> </span><span class="sc1">#CALCULA MATRIZ DE TRANSFORM das coordenadas</span><span class="sc0">
+</span><span class="sc1">#print("MAT TRANSFORM PERSPECTIVA. FORMADO NP.FLOAT32")</span><span class="sc0">
+</span><span class="sc1">#print(matPerspectiva)</span><span class="sc0">
+
+
+
+</span><span class="sc1">#TESET COM HOMOGRAFIA</span><span class="sc0">
+</span><span class="sc1">#matHomografia = cv2.findHomography(ptsFoto,ptsMapa)</span><span class="sc0">
+</span><span class="sc1">#print("MAT TRANSFORM HOMOGRAFIA. FORMATO ARRAY")</span><span class="sc0">
+</span><span class="sc1">#print(matHomografia)</span><span class="sc0">
+</span><span class="sc1">#dst = cv2.warpPerspective(pts,MatrizPerspectiva,(800,600)) #aplica perspectiva a uma imagem</span><span class="sc0">
+
+</span><span class="sc1"># TESTE DE PONTOS</span><span class="sc0">
+</span><span class="sc1">#transforma([[510,523]], matPerspectiva) #FUMAÇA</span><span class="sc0">
+</span><span class="sc1">#transforma([[546,117]], matPerspectiva)</span><span class="sc0">
+</span><span class="sc1">#transforma([[510,238]], matPerspectiva)</span><span class="sc0">
+</span><span class="sc1">#transforma([[412,118]], matPerspectiva)</span><span class="sc0">
+</span><span class="sc1">#plt.subplot(121),plt.imshow(foto[:,:,::-1]),plt.title('Foto')</span><span class="sc0">
+</span><span class="sc1">#plt.subplot(122),plt.imshow(img[:,:,::-1]),plt.title('Mapa')</span><span class="sc0">
+</span><span class="sc1">#plt.show()</span><span class="sc0">
+
+</span><span class="sc11">fig</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc11">ax</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">plt</span><span class="sc10">.</span><span class="sc11">subplots</span><span class="sc10">()</span><span class="sc0">
+</span><span class="sc11">ax</span><span class="sc10">.</span><span class="sc11">imshow</span><span class="sc10">(</span><span class="sc11">foto</span><span class="sc10">[:,:,::-</span><span class="sc2">1</span><span class="sc10">])</span><span class="sc0">
+</span><span class="sc5">print</span><span class="sc10">(</span><span class="sc3">"INICIO"</span><span class="sc10">)</span><span class="sc0">
+</span><span class="sc1">#print(ax.get_position())</span><span class="sc0">
+</span><span class="sc5">def</span><span class="sc0"> </span><span class="sc9">onclick</span><span class="sc10">(</span><span class="sc11">event</span><span class="sc10">):</span><span class="sc0">
+    </span><span class="sc11">data</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">event</span><span class="sc10">.</span><span class="sc11">xdata</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc11">event</span><span class="sc10">.</span><span class="sc11">ydata</span><span class="sc0">
+    </span><span class="sc11">a</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">np</span><span class="sc10">.</span><span class="sc11">array</span><span class="sc10">(</span><span class="sc11">data</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc11">dtype</span><span class="sc10">=</span><span class="sc4">'float32'</span><span class="sc10">)</span><span class="sc0">
+    </span><span class="sc11">a</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">np</span><span class="sc10">.</span><span class="sc11">array</span><span class="sc10">([</span><span class="sc11">a</span><span class="sc10">])</span><span class="sc0">
+    </span><span class="sc5">print</span><span class="sc10">(</span><span class="sc3">"CLICK nos pixels:"</span><span class="sc10">)</span><span class="sc0">
+    </span><span class="sc5">print</span><span class="sc10">(</span><span class="sc11">data</span><span class="sc10">)</span><span class="sc0">
+
+    </span><span class="sc11">transforma</span><span class="sc10">(</span><span class="sc11">a</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc11">matPerspectiva</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc11">matCoordenadas</span><span class="sc10">)</span><span class="sc0">
+
+
+</span><span class="sc11">cid</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">fig</span><span class="sc10">.</span><span class="sc11">canvas</span><span class="sc10">.</span><span class="sc11">mpl_connect</span><span class="sc10">(</span><span class="sc4">'button_press_event'</span><span class="sc10">,</span><span class="sc0"> </span><span class="sc11">onclick</span><span class="sc10">)</span><span class="sc0">
+
+ 
+</span><span class="sc11">plt</span><span class="sc10">.</span><span class="sc11">show</span><span class="sc10">()</span><span class="sc0">
+</span><span class="sc11">k</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc11">cv2</span><span class="sc10">.</span><span class="sc11">waitKey</span><span class="sc10">(</span><span class="sc2">0</span><span class="sc10">)</span><span class="sc0">
+</span><span class="sc5">if</span><span class="sc0"> </span><span class="sc11">k</span><span class="sc10">==</span><span class="sc2">27</span><span class="sc10">:</span><span class="sc0">    </span><span class="sc1"># Esc key to stop</span><span class="sc0">
+    </span><span class="sc11">cv2</span><span class="sc10">.</span><span class="sc11">destroyAllWindows</span><span class="sc10">()</span><span class="sc0">
+
+
+
+</span></div></body>
+</html>
