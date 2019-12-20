@@ -4,18 +4,20 @@ from matplotlib import pyplot as plt
 #import os
 
 class Pontos:
-    def __init__(self, pts, desc):
+    def __init__(self, xy, desc):
         #print(self.__dict__)
-        #print("............................")
-        self.pts = np.float32(pts)
-        self.descricao = desc
-        print(self.descricao)
+        print("................PONTOS RECEBIDOS............")
+        print(xy)
+        print("................PONTOS ATRIBUIDOS............")
+
+        self.pts = np.float32(xy)
         print(self.pts)
+        self.descricao = desc
+        
 
         
     def getMatrizTransformacao(self, matDist):
         m = cv2.getPerspectiveTransform(self.pts,matDist.pts,cv2.DECOMP_LU)
-
         return m
 
 
@@ -32,14 +34,11 @@ def applyPerspectiva(ponto, matTransf): #Aplica a um ponto [x,y] a matriz de tra
     print("RECEBEU A MATRIZ DE TRANSFORMAÇÃO:")
     print(mat)   
     print(" ") 
-    
-
     print("RESULTADO EM:")
     print(persp) 
     print(" - - - - - - - - - - - - - - - - - - - - ")   
     print(" ")   
   
-
     return persp[0][0][0], persp[0][0][1]
     
     
@@ -112,7 +111,7 @@ def onclick(event):
 #DADOS INFORMADOS NO PROBLEMA: PIXELS E COORDENADAS
 foto = Pontos([[552,478],[220,148],[660,103],[412,118]], "Pixels ABCE na Foto") 
 mapa = Pontos([[657,760],[418,496],[493,55],[368,241]], "Pixels ABCE no Mapa")   
-coords = Pontos([[-43.974836,-19.885087],[-43.975112,-19.884362],[-43.978154,-19.880996],[-43.978796,-19.875391]], "Coordenadas geograficas dos pontos ABCE")
+coords = Pontos([[-43.975112,-19.884362],[-43.978154,-19.880996],[-43.978796,-19.75391],[-43.978796,-19.877751]], "Coordenadas geograficas dos pontos ABCE")
 #CALC MATRIZES DE TRANSFORMAÇÃO
 matFotoMapa = Pontos(foto.getMatrizTransformacao(mapa), "Matriz de Transformação FOTO -> MAPA")
 matMapaFoto = Pontos(mapa.getMatrizTransformacao(foto), "Matriz de Transformação MAPA -> FOTO")
