@@ -28,7 +28,7 @@ def transforma(pt, dst1, dst2): #aplica perspectiva e printa pontos
     coordsOut = cv2.perspectiveTransform(a, h)
     coords = coordsOut	
     plot1.suptitle(str(coords), fontsize=12, ha="left")
-    '''
+    
     clear()
     
     print(" ")
@@ -49,7 +49,7 @@ def transforma(pt, dst1, dst2): #aplica perspectiva e printa pontos
     print(coordsOut)
     print(".-.-.-.-.-.-.-.-.-.-.-.-.-.-.")
     print(" ")
-    '''
+    
 	
 def InitPerspectiva():
     ptsFoto = np.float32([[552,478],[220,148],[660,103],[412,118]])
@@ -131,13 +131,13 @@ def onclick(event):
     a = np.array(mousePos, dtype='float32')
     a = np.array([a])
     
-    print(event.inaxes)
-    print(event.canvas.figure)    
+    #print(event.inaxes)
+    #print(event.canvas.figure)    
     o, p = mousePos
     mousePosTxt = [round(o,1), round(p,1)]
     ax[0, 0].set_title(mousePosTxt)
     transforma(a, matFotoMapa, matCoordenadas)
-    print(type(a))
+    #print(type(a))
     plot1.suptitle(str(coords), fontsize=12)
     plt.show()
 
